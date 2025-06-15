@@ -2,7 +2,14 @@
   {{#unless this.closed}}
     <div class="leaderboard-mobile-only leaderboard-card">
       <button class="leaderboard-close" {{on "click" this.closeLeaderboard}}>×</button>
-      <div class="leaderboard-title">Top Contributors This Week</div>
+
+      <div class="leaderboard-title">
+        <span>Check out the top contributors</span>
+        <a href="/leaderboard" class="leaderboard-link">
+          → View Full Leaderboard
+        </a>
+      </div>
+
       <div class="leaderboard-scroll">
         <div class="leaderboard-row">
           {{#each this.topUsers as |user|}}
