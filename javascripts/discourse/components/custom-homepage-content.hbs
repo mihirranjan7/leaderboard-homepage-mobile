@@ -1,14 +1,17 @@
 {{#if this.isHomepage}}
-  <div class="leaderboard-mobile-only leaderboard-card">
-    <div class="leaderboard-title">Top Contributors This Week</div>
-    <div class="leaderboard-scroll">
-      <div class="leaderboard-row">
-        {{#each this.topUsers as |user|}}
-          <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
-            {{avatar user imageSize="large"}}
-          </a>
-        {{/each}}
+  {{#unless this.closed}}
+    <div class="leaderboard-mobile-only leaderboard-card">
+      <button class="leaderboard-close" {{on "click" this.closeLeaderboard}}>×</button>
+      <div class="leaderboard-title">Top Contributors This Week</div>
+      <div class="leaderboard-scroll">
+        <div class="leaderboard-row">
+          {{#each this.topUsers as |user|}}
+            <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
+              {{avatar user imageSize="large"}}
+            </a>
+          {{/each}}
+        </div>
       </div>
     </div>
-  </div>
+  {{/unless}}
 {{/if}}
