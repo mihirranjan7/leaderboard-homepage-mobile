@@ -1,12 +1,14 @@
 {{#if this.isHomepage}}
-  <div class="leaderboard-title">🏆 Top 20 Contributors This Week</div>
-  <div class="leaderboard-scroll">
-    <div class="leaderboard-row">
-      {{#each this.topUsers as |user|}}
-        <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
-          {{avatar user imageSize="large"}}
-        </a>
-      {{/each}}
+  <div class="leaderboard-mobile-only">
+    <div class="leaderboard-title">🏆 Top 20 Contributors This Week</div>
+    <div class="leaderboard-scroll">
+      <div class="leaderboard-row">
+        {{#each this.topUsers as |user|}}
+          <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
+            {{avatar user imageSize="large"}}
+          </a>
+        {{/each}}
+      </div>
     </div>
   </div>
 {{/if}}
