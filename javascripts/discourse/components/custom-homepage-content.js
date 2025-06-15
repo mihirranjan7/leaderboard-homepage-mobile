@@ -44,7 +44,7 @@ export default class CustomHomepageContent extends Component {
 
   @action
   closeLeaderboard() {
-    const TWO_DAYS_MS = 2 * 24 * 60 * 60 * 1000;
+    const TWO_DAYS_MS = 1 * 24 * 60 * 60 * 1000;
     localStorage.setItem(CLOSED_KEY, (Date.now() + TWO_DAYS_MS).toString());
     this.closed = true;
   }
