@@ -1,4 +1,10 @@
 {{#if this.isHomepage}}
-  <h1>This is my homepage HTML content</h1>
-  {{! You can add any custom HTML here }}
+  <div class="leaderboard-title">🏆 Top 10 Contributors This Week</div>
+  <div class="leaderboard-avatars">
+    {{#each this.topUsers as |user|}}
+      <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar">
+        {{avatar user imageSize="large"}}
+      </a>
+    {{/each}}
+  </div>
 {{/if}}
