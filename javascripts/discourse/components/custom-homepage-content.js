@@ -7,7 +7,9 @@ import { defaultHomepage } from "discourse/lib/utilities";
 
 export default class CustomHomepageContent extends Component {
   @service router;
+
   @tracked topUsers = [];
+  @tracked closed = false; // track if leaderboard is closed
 
   constructor() {
     super(...arguments);
@@ -26,5 +28,10 @@ export default class CustomHomepageContent extends Component {
       .filter(item => !item.user.staged && !item.user.anonymized)
       .slice(0, 20)
       .map(item => item.user);
+  }
+
+  @action
+  closeLeaderboard() {
+    this.closed = true;
   }
 }
