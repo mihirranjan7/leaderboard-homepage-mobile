@@ -53,4 +53,12 @@
   white-space: nowrap !important;
   min-width: 0 !important;
 }
+.leaderboard-mobile-only {
+  display: block;
+}
 
+@media (min-width: 768px) {
+  .leaderboard-mobile-only {
+    display: none !important;
+  }
+}
