@@ -1,32 +1,70 @@
-
 .leaderboard-avatars {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
   align-items: center;
-  margin: 1em 0;
-  flex-wrap: wrap;
+  margin: 1.5em 0;
+  padding: 0.5em;
 }
 
 .leaderboard-avatar {
+  position: relative;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: 2px solid #ffc107;
+  border: 3px solid #ffc107;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display: inline-block;
-  width: 48px;
-  height: 48px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.leaderboard-avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .leaderboard-avatar img {
-  border-radius: 50%;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.leaderboard-avatar:hover img {
+  transform: scale(1.05);
 }
 
 .leaderboard-title {
   text-align: center;
-  font-size: 1.15em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
+  font-size: 1.4em;
+  margin-bottom: 0.75em;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.4px;
+}
+
+/* Optional: tooltip using title attribute (no extra HTML) */
+.leaderboard-avatar:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -2em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  font-size: 0.75em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.leaderboard-avatar::after {
+  content: "";
+  opacity: 0;
 }
