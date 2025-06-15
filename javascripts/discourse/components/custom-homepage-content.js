@@ -26,7 +26,7 @@ export default class CustomHomepageContent extends Component {
     // Only take top 5 users and filter out staged or anonymized
     this.topUsers = data.directory_items
       .filter(item => !item.user.staged && !item.user.anonymized)
-      .slice(0, 5)
+      .slice(0, 3)
       .map(item => item.user);
   }
 }
