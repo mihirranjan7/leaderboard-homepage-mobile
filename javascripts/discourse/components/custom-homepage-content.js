@@ -6,6 +6,8 @@ import { ajax } from "discourse/lib/ajax";
 import { defaultHomepage } from "discourse/lib/utilities";
 
 const CLOSED_KEY = "leaderboardClosedUntil";
+const CACHE_KEY = "cachedLeaderboardData";
+const CACHE_EXPIRY = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 export default class CustomHomepageContent extends Component {
   @service router;
@@ -35,17 +37,40 @@ export default class CustomHomepageContent extends Component {
   async loadLeaderboard() {
     if (this.closed) return;
 
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const { timestamp, data } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_EXPIRY) {
+          this.topUsers = data;
+          return;
+        }
+      } catch (e) {
+        console.warn("Failed to parse cached leaderboard data", e);
+      }
+    }
+
     const data = await ajax("/directory_items.json?order=likes_received&period=weekly");
-    this.topUsers = data.directory_items
+    const filteredUsers = data.directory_items
       .filter(item => !item.user.staged && !item.user.anonymized)
       .slice(0, 20)
       .map(item => item.user);
+
+    this.topUsers = filteredUsers;
+
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        timestamp: Date.now(),
+        data: filteredUsers
+      })
+    );
   }
 
   @action
   closeLeaderboard() {
-    const TWO_DAYS_MS = 1 * 24 * 60 * 60 * 1000;
-    localStorage.setItem(CLOSED_KEY, (Date.now() + TWO_DAYS_MS).toString());
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 1 day
+    localStorage.setItem(CLOSED_KEY, (Date.now() + ONE_DAY_MS).toString());
     this.closed = true;
   }
 }
