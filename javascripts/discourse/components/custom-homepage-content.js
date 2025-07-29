@@ -3,7 +3,6 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
-import { defaultHomepage } from "discourse/lib/utilities";
 
 const CLOSED_KEY = "leaderboardClosedUntil";
 const CACHE_KEY = "cachedLeaderboardData";
@@ -20,10 +19,6 @@ export default class CustomHomepageContent extends Component {
     this.checkIfClosed();
     this.loadLeaderboard();
   }
-
-  get isUserSummaryPage() {
-  return this.router.currentRouteName === "user.summary";
-}
 
   checkIfClosed() {
     const saved = localStorage.getItem(CLOSED_KEY);
