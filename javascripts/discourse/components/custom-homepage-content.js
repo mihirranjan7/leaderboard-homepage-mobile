@@ -21,10 +21,9 @@ export default class CustomHomepageContent extends Component {
     this.loadLeaderboard();
   }
 
-  get isHomepage() {
-    const { currentRouteName } = this.router;
-    return currentRouteName === `discovery.${defaultHomepage()}`;
-  }
+  get isUserSummaryPage() {
+  return this.router.currentRouteName === "user.summary";
+}
 
   checkIfClosed() {
     const saved = localStorage.getItem(CLOSED_KEY);
