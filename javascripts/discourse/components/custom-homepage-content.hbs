@@ -1,4 +1,4 @@
-{{#if this.isHomepage}}
+{{#if (eq this.currentPath "user.summary")}}
   {{#unless this.closed}}
     <div class="leaderboard-mobile-only leaderboard-card">
       <button class="leaderboard-close" {{on "click" this.closeLeaderboard}}>×</button>
