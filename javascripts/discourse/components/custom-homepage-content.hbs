@@ -1,28 +1,26 @@
-{{#if (eq this.currentPath "user.summary")}}
-  {{#unless this.closed}}
-    <div class="leaderboard-mobile-only leaderboard-card">
-      <button class="leaderboard-close" {{on "click" this.closeLeaderboard}}>×</button>
+{{#unless this.closed}}
+  <div class="leaderboard-mobile-only leaderboard-card">
+    <button class="leaderboard-close" {{on "click" this.closeLeaderboard}}>×</button>
 
-      <div class="leaderboard-title">
-        <a href="/leaderboard" class="leaderboard-link-text">
-          Top Contributors
-        </a>
-        <a href="/leaderboard" class="leaderboard-link-icon" title="View Full Leaderboard">
-          <svg class="fa d-icon d-icon-chevron-right svg-icon" aria-hidden="true">
-            <use href="#chevron-right"></use>
-          </svg>
-        </a>
-      </div>
+    <div class="leaderboard-title">
+      <a href="/leaderboard" class="leaderboard-link-text">
+        Top Contributors
+      </a>
+      <a href="/leaderboard" class="leaderboard-link-icon" title="View Full Leaderboard">
+        <svg class="fa d-icon d-icon-chevron-right svg-icon" aria-hidden="true">
+          <use href="#chevron-right"></use>
+        </svg>
+      </a>
+    </div>
 
-      <div class="leaderboard-scroll">
-        <div class="leaderboard-row">
-          {{#each this.topUsers as |user|}}
-            <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
-              {{avatar user imageSize="large"}}
-            </a>
-          {{/each}}
-        </div>
+    <div class="leaderboard-scroll">
+      <div class="leaderboard-row">
+        {{#each this.topUsers as |user|}}
+          <a href={{user.path}} title="{{user.username}}" class="leaderboard-avatar" draggable="false">
+            {{avatar user imageSize="large"}}
+          </a>
+        {{/each}}
       </div>
     </div>
-  {{/unless}}
-{{/if}}
+  </div>
+{{/unless}}
